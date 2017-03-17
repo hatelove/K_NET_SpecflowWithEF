@@ -8,8 +8,19 @@ namespace SpecflowWithEF.steps
     [Binding]
     public class SpecFlowFeature1Steps
     {
+        //cleanBS
         [BeforeScenario()]
         public void BeforeScenario()
+        {
+            using (var dbcontext = new NorthwindEntities())
+            {
+                dbcontext.Database.ExecuteSqlCommand("Delete Orders Where CustomerID='Joey'");
+                dbcontext.Database.ExecuteSqlCommand("Delete Customers Where CustomerID='Joey'");
+            }
+        }
+
+        [AfterFeature()]
+        public static void AfterFeature()
         {
             using (var dbcontext = new NorthwindEntities())
             {
@@ -21,6 +32,7 @@ namespace SpecflowWithEF.steps
         [Given(@"Customers table exists")]
         public void GivenCustomersTableExists(Table table)
         {
+            //specI
             var customers = table.CreateSet<Customers>();
             using (var dbcontext = new NorthwindEntities())
             {
