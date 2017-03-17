@@ -62,7 +62,11 @@ namespace SpecflowWithEF.steps
         {
             using (var dbcontext = new NorthwindEntities())
             {
-                return dbcontext.Orders.Where(o => o.CustomerID == customerId).Count();
+                var count = dbcontext.Orders
+                    .Where(o => o.CustomerID == customerId)
+                    .Count();
+
+                return count;
             }
         }
     }
