@@ -8,7 +8,6 @@ namespace SpecflowWithEF.steps
     [Binding]
     public class SpecFlowFeature1Steps
     {
-        //cleanBS
         [BeforeScenario()]
         public void BeforeScenario()
         {
@@ -32,7 +31,6 @@ namespace SpecflowWithEF.steps
         [Given(@"Customers table exists")]
         public void GivenCustomersTableExists(Table table)
         {
-            //specI
             var customers = table.CreateSet<Customers>();
             using (var dbcontext = new NorthwindEntities())
             {
